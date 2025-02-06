@@ -15,30 +15,30 @@ public interface TarefasClient {
 
     @PostMapping
     TarefasDTOResponse salvarTarefas(@RequestBody TarefasDTORequest dto,
-                                     @RequestHeader("Authorization") String token);
+                                     @RequestHeader(value = "Authorization", required = false) String token);
 
 
     @GetMapping("/eventos")
     List<TarefasDTOResponse> buscaTarefaAgendadaPeriodo(
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dataInicial,
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dataFinal,
-            @RequestHeader("Authorization") String token);
+            @RequestHeader(value = "Authorization", required = false) String token);
 
     @GetMapping
-    List<TarefasDTOResponse> buscaTarefasPorEmail(@RequestHeader("Authorization") String token);
+    List<TarefasDTOResponse> buscaTarefasPorEmail(@RequestHeader(value = "Authorization", required = false) String token, String email);
 
     @DeleteMapping
     Void deletaPorId(@RequestParam("Id") String Id,
-                     @RequestHeader("Authorization") String token);
+                     @RequestHeader(value = "Authorization", required = false) String token);
 
     @PatchMapping
     TarefasDTOResponse alteraStatusNotificacao(@RequestParam("status") StatusNotificacao status,
                                                @RequestParam("id") String Id,
-                                               @RequestHeader("Authorization") String token);
+                                               @RequestHeader(value = "Authorization", required = false) String token);
 
     @PutMapping
     TarefasDTOResponse updateTarefas(@RequestBody TarefasDTORequest dto,
                                      @RequestParam("id") String Id,
-                                     @RequestHeader("Authorization") String token);
+                                     @RequestHeader(value = "Authorization", required = false) String token);
 
 }
