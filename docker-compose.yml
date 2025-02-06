@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  bff:
+    container_name: bff
+    build: .
+    ports:
+      - "8083:8083"
+    networks:
+      - java-network
+
+networks:
+  java-network:
+    driver: bridge
